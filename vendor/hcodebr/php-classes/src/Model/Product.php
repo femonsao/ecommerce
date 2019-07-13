@@ -6,22 +6,31 @@ use \Hcode\DB\Sql;
 use \Hcode\Model;
 use \Hcode\Mailer;
 
+
 class Product extends Model {
+
 	public static function listAll()
 	{
-		$sql = new Sql();
-		return $sql->select("SELECT * FROM tb_products ORDER BY desproduct");
-	}
-	public static function checkList($list)
+
+        $sql = new Sql();
+        
+        return $sql->select("SELECT * FROM tb_products ORDER BY desproduct");
+        
+    }
+
+    	public static function checkList($list)
 	{
+
 		foreach ($list as &$row) {
 			
 			$p = new Product();
 			$p->setData($row);
 			$row = $p->getValues();
-		}
-		return $list;
-	}
+        }
+        
+        return $list;
+        
+    }
 	public function save()
 	{
 		$sql = new Sql();

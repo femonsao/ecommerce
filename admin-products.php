@@ -70,7 +70,9 @@ $app->post("/admin/products/:idprodut", function($idproduct){
 
     $product->save();
 
-    $product->setPhoto($_FILES["file"]);
+    if ((int)$_FILES["file"]["size"] > 0) {
+        $product->setPhoto($_FILES["file"]);
+     }
 
     header('Location:  /admin/products');
     exit;
@@ -86,14 +88,9 @@ $app->get("/admin/products/:idprodut/delete", function($idproduct){
     $product->get((int)$idproduct);
 
     $product->delete();
-    
+
     header('Location:  /admin/products');
     exit;
 });
-
-
-
-
-
 
 ?>

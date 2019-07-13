@@ -4,6 +4,7 @@ namespace Hcode;
 
 use Rain\Tpl;
 
+
 class Page
     {
 
@@ -55,5 +56,5 @@ class Page
             if ($this->options["footer"] === true) $this->tpl->draw("footer");
         }
     }
-
+  
 ?>
