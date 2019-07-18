@@ -47,6 +47,7 @@ class Category extends Model{
         $this->setData($results[0]);
 
     }
+
     public function delete()
     {
         $sql = new Sql();
@@ -60,6 +61,7 @@ class Category extends Model{
 
 
     }
+
     public static function updateFile()
     {
         $categories = Category::listAll();
@@ -73,6 +75,7 @@ class Category extends Model{
 
 
     }
+
     public function getProducts($related = true)
     {
 
@@ -105,10 +108,45 @@ class Category extends Model{
                       ':idcategory'=>$this->getidcategory()
             ]);
             
-
         }
 
     }
+
+    public function getProductsPage($page = 1, $itemsPerPage = 8)
+    {
+
+        $start = ($page - 1) * $itemsPerPage;
+
+        $sql = new Sql();
+
+        $results = $sql->select("SELECT SQL_CALC_FOUND_ROWS *
+        FROM tb_products a
+        INNER JOIN tb_productscategories b ON a.idproduct = b.idproduct
+        INNER JOIN tb_categories c ON c.idcategory = b.idcategory
+        WHERE c.idcategory = :idcategory
+        lIMIT $start, $itemsPerPage;
+       
+    ",[
+
+        ':idcategory'=>$this->getidcategory()
+
+    ]
+    
+    );
+
+       $resultsTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+       return[
+            'data'=>Product::checkList($results),
+            'total'=>(int)$resultsTotal[0]["nrtotal"],
+            'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage )
+
+
+
+       ];
+
+    }
+
     public function addProduct(Product $product)
     {
 
@@ -120,6 +158,7 @@ class Category extends Model{
         ]);
 
     }
+
     public function removeProduct(Product $product)
     {
 
