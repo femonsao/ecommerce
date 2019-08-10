@@ -8,7 +8,7 @@ class Mailer{
 
     const USERNAME = "";//colocar email da page
     const PASSWORD = "";//colocar senha email
-    const NAME_FROM = "";// nome remetente (loja)
+    const NAME_FROM = "Hcode";// nome remetente (loja)
 
     private $mail;
 
@@ -17,9 +17,9 @@ class Mailer{
         require_once("vendor/autoload.php");
 
         $config = array(
-            "tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/email/",
-            "cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
-            "debug"         =>false
+            "tpl_dir"    => $_SERVER["DOCUMENT_ROOT"]."/views/email/",
+            "cache_dir"  => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
+            "debug"      =>false
         );
         
         Tpl::configure($config);
@@ -32,6 +32,8 @@ class Mailer{
         $html= $tpl->draw($tplName, true);
 
         $this->mail = new \PHPMailer;
+
+        $this->mail->CharSet ='UTF-8';
 
     //Tell PHPMailer to use SMTP
     $this->mail->isSMTP();
@@ -88,7 +90,7 @@ class Mailer{
     $this->mail->msgHTML($html);
 
     //Replace the plain text body with one created manually
-    $this->mail->AltBody = 'deu erro vlw';
+    $this->mail->AltBody = 'Deu erro vlw';
 
     //Attach an image file
     //$this->mail->addAttachment('images/phpmailer_mini.png');
