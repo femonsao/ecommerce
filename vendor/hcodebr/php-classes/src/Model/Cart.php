@@ -271,7 +271,7 @@ class Cart extends Model {
 
            $msg =(isset($_SESSION[Cart::SESSION_ERROR])) ? $_SESSION[Cart::SESSION_ERROR] : "";
 
-           cart::clearMsgError();
+           Cart::clearMsgError();
 
            return $msg;
 
