@@ -70,6 +70,7 @@ class User extends Model
         if (count($results) === 0) {
 
             throw new \Exception("Usuário inexistente ou senha inválida");
+            
         }
         $data = $results[0];
 
@@ -84,9 +85,11 @@ class User extends Model
             $_SESSION[User::SESSION] = $user->getValues();
 
             return $user;
+
         } else {
 
             throw new \Exception("Usuário inexistente ou senha inválida.");
+
         }
     }
     public static function verifyLogin($inadmin = true)
