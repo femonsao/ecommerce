@@ -4,6 +4,7 @@ namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
 use \Hcode\Model;
+use SQLite3Result;
 
 class OrderStatus extends Model{
 
@@ -12,8 +13,18 @@ class OrderStatus extends Model{
     const PAGO = 3;
     const ENTREGUE = 4;
 
+    public static function ListAll()
+    {
 
-    
+        $sql =  new Sql();
+
+        return $sql->select("SELECT * FROM tb_ordersstatus ORDER BY desstatus");
+
+
+    }
+
 }
+
+
 
 ?>
