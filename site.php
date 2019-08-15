@@ -405,7 +405,7 @@ $app->get('/profile', function () {
 
 	$page->setTpl("profile", [
 		'user' => $user->getValues(),
-		'profileMsg' => User::getSucess(),
+		'profileMsg' => User::getSuccess(),
 		'profileError' => User::getError()
 
 	]);
@@ -449,7 +449,7 @@ $app->post("/profile",  function () {
 
 	$user->update();
 
-	User::setSucess("Dados alterados com sucesso!");
+	User::setSuccess("Dados alterados com sucesso!");
 
 	header('Location: /profile');
 	exit;
@@ -591,7 +591,7 @@ $app->get("/profile/change-password", function(){
 
 	$page->setTpl("profile-change-password",[
 		'changePassError'=>User::getError(),
-		'changePassSuccess'=>User::getSucess()
+		'changePassSuccess'=>User::getSuccess()
 	]) ;
 	
 });
@@ -648,7 +648,7 @@ $app->post("/profile/change-password", function (){
 
 	 $user->update();
 
-	 User::setSucess("Senha alterada com sucesso");
+	 User::setSuccess("Senha alterada com sucesso");
 
 	 header("Location: /profile/change-password");
 	 exit;

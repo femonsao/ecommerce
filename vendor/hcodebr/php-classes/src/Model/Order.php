@@ -8,7 +8,7 @@ use \Hcode\Model\Cart;
 
 class Order extends Model{
 
-    const SUCESS = "Order-Success";
+    const SUCCESS = "Order-Success";
     const ERROR = "Order-Error";
 
     public function save()
@@ -123,26 +123,26 @@ class Order extends Model{
         $_SESSION[Order::ERROR]  = NULL;
     }
 
-    public static function setSucess($msg)
+    public static function setSuccess($msg)
     {
 
-        $_SESSION[Order::SUCESS] = $msg;
+        $_SESSION[Order::SUCCESS] = $msg;
     }
 
-    public static function getSucess()
+    public static function getSuccess()
     {
 
-        $msg = (isset($_SESSION[Order::SUCESS]) && $_SESSION[Order::SUCESS]) ? $_SESSION[Order::SUCESS] : '';
+        $msg = (isset($_SESSION[Order::SUCCESS]) && $_SESSION[Order::SUCCESS]) ? $_SESSION[Order::SUCCESS] : '';
 
-        Order::clearSucess();
+        Order::clearSuccess();
 
         return $msg;
     }
 
-    public static function clearSucess()
+    public static function clearSuccess()
     {
 
-        $_SESSION[Order::SUCESS]  = NULL;
+        $_SESSION[Order::SUCCESS]  = NULL;
     }
 
     public static function getPage($page = 1, $itemsPerPage = 10)

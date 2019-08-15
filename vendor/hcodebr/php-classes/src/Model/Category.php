@@ -182,7 +182,7 @@ class Category extends Model{
 
         $results = $sql->select(
         "SELECT SQL_CALC_FOUND_ROWS *
-        FROM tb_categories 
+        FROM tb_categories
         ORDER BY descategory
         lIMIT $start, $itemsPerPage;
 

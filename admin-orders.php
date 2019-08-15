@@ -19,7 +19,7 @@ $app->get("/admin/orders/:idorder/status", function($idorder){
     $page->setTpl("order-status", [
         'order'=>$order->getValues(),
         'status'=>OrderStatus::listAll(),
-        'msgSuccess'=>Order::getSucess(),
+        'msgSuccess'=>Order::getSuccess(),
         'msgError'=>Order::getError()
        
        
@@ -45,7 +45,7 @@ $app->post("/admin/orders/:idorder/status", function($idorder){
 
     $order->save();
 
-    Order::setSucess("Status atualizado.");
+    Order::setSuccess("Status atualizado.");
 
     header("Location: /admin/orders/".$idorder."/status");
     exit;

@@ -14,7 +14,7 @@ class User extends Model
     const SECRET_IV = "HcodePhp7_SECRET_IV";
     const ERROR = "UserError";
     const ERROR_REGISTRER = "UserErrorRegister";
-    const SUCESS = "UserSucess";
+    const SUCCESS = "UserSuccess";
 
     public static function getFromSession()
     {
@@ -290,8 +290,8 @@ class User extends Model
         $sql = new Sql();
 
         $sql->query("UPDATE tb_users SET despassword = :password WHERE iduser = :iduser", array(
-            ":password" => $password,
-            ":iduser" => $this->getiduser()
+            ":password" =>$password,
+            ":iduser" =>$this->getiduser()
         ));
     }
 
@@ -317,26 +317,26 @@ class User extends Model
         $_SESSION[User::ERROR]  = NULL;
     }
 
-    public static function setSucess($msg)
+    public static function setSuccess($msg)
     {
 
-        $_SESSION[User::SUCESS] = $msg;
+        $_SESSION[User::SUCCESS] = $msg;
     }
 
-    public static function getSucess()
+    public static function getSuccess()
     {
 
-        $msg = (isset($_SESSION[User::SUCESS]) && $_SESSION[User::SUCESS]) ? $_SESSION[User::SUCESS] : '';
+        $msg = (isset($_SESSION[User::SUCCESS]) && $_SESSION[User::SUCCESS]) ? $_SESSION[User::SUCCESS] : '';
 
-        User::clearSucess();
+        User::clearSuccess();
 
         return $msg;
     }
 
-    public static function clearSucess()
+    public static function clearSuccess()
     {
 
-        $_SESSION[User::SUCESS]  = NULL;
+        $_SESSION[User::SUCCESS]  = NULL;
     }
 
     public static function getPasswordHash($password)
