@@ -175,13 +175,14 @@ class User extends Model
         );
         $this->setData($results[0]);
     }
+
     public function delete()
     {
 
         $sql = new Sql();
 
-        $sql->query("Call sp_users_delete (:iduser)", array(
-            ":iduser" => $this->getiduser()
+        $sql->query("Call sp_users_delete(:iduser)", array(
+            ":iduser"=>$this->getiduser()
 
         ));
     }
@@ -399,7 +400,64 @@ class User extends Model
         return $results;
 
     }
+    public static function getPage($page = 1, $itemsPerPage = 10)
+    {
 
+        $start = ($page - 1) * $itemsPerPage;
+
+        $sql = new Sql();
+
+        $results = $sql->select(
+        "SELECT SQL_CALC_FOUND_ROWS *
+        FROM tb_users a 
+        INNER JOIN tb_persons b USING(idperson)
+        ORDER BY b.desperson
+        lIMIT $start, $itemsPerPage;
+
+        ");
+
+       $resultsTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+       return[
+            'data'=>$results,
+            'total'=>(int)$resultsTotal[0]["nrtotal"],
+            'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage )
+
+       ];
+
+    }
+
+    public static function getPageSearch($search, $page = 1, $itemsPerPage = 10)
+    {
+
+        $start = ($page - 1) * $itemsPerPage;
+
+        $sql = new Sql();
+
+        $results = $sql->select(
+        "SELECT SQL_CALC_FOUND_ROWS *
+        FROM tb_users a 
+        INNER JOIN tb_persons b USING(idperson)
+        WHERE b.desperson LIKE :search OR b.desemail = :search or a.deslogin LIKE :search
+        ORDER BY b.desperson
+        lIMIT $start, $itemsPerPage;
+
+        " , [ 
+
+            ':search'=>'%'.$search.'%'
+
+        ]);
+
+       $resultsTotal = $sql->select("SELECT FOUND_ROWS() AS nrtotal;");
+
+       return[
+            'data'=>$results,
+            'total'=>(int)$resultsTotal[0]["nrtotal"],
+            'pages'=>ceil($resultsTotal[0]["nrtotal"] / $itemsPerPage )
+
+       ];
+
+    }
 }
 
 ?>
