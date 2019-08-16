@@ -2,7 +2,7 @@
 <form method="post" action="https://pagseguro.uol.com.br/v2/checkout/payment.html">  
           
         <!-- Campos obrigatórios -->  
-        <input name="receiverEmail" type="hidden" value="femonsao@gmail.com">  
+        <input name="receiverEmail" type="hidden" value="">  
         <input name="currency" type="hidden" value="BRL">  
   
         <!-- Itens do pagamento (ao menos um item é obrigatório) -->  
@@ -15,6 +15,7 @@
         <input name="itemWeight{$counter+1}" type="hidden" value="{$value.vlweight*1000}">  
         {/loop}
         
+        <input name="itemShippingCost1" type="hidden" value="{$order.vlfreight}"> 
         <!-- Código de referência do pagamento no seu sistema (opcional) -->  
         <input name="reference" type="hidden" value="{$order.idorder}">  
           
