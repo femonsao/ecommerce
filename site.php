@@ -321,10 +321,10 @@ $app->get("/login",  function () {
 	$page = new Page();
 
 	$page->setTpl("/login", [
-		'error' => User::getError(),
-		'errorRegister' => User::getErrorRegister(),
-		'registerValues' => (isset($_SESSION['registerValues'])) ? $_SESSION['registerValues'] : [
-			'name' => '', 'email' => '', 'phone' => ''
+		'error' =>User::getError(),
+		'errorRegister'=>User::getErrorRegister(),
+		'registerValues'=>(isset($_SESSION['registerValues'])) ? $_SESSION['registerValues'] : [
+			'name'=>'','email' =>'', 'phone' => ''
 		]
 
 	]);
@@ -336,7 +336,7 @@ $app->post("/login",  function () {
 
 
 		User::login($_POST['login'], $_POST['password']);
-	} catch (Exception $e) {
+	} catch (\Exception $e) {
 
 		User::setError($e->getMessage());
 	}
