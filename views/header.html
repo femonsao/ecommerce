@@ -57,7 +57,8 @@
                     <div class="header-right">
                         <ul class="list-unstyled list-inline">
                             <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">moeda :</span><span class="value">BRL </span><b class="caret"></b></a>
+                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" 
+                                href="#"><span class="key">moeda :</span><span class="value">BRL </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">BRL</a></li>
                                     <li><a href="#">USD</a></li>
@@ -65,7 +66,8 @@
                             </li>
 
                             <li class="dropdown dropdown-small">
-                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" href="#"><span class="key">linguagem :</span><span class="value">Português </span><b class="caret"></b></a>
+                                <a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle" 
+                                href="#"><span class="key">linguagem :</span><span class="value">Português </span><b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Português</a></li>
                                     <li><a href="#">Inglês</a></li>
@@ -112,7 +114,7 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="/">Home</a></li>
-                        <li><a href="#">Produtos</a></li>
+                        <li><a href="/products">Produtos</a></li>
                         <li><a href="/cart">Carrinho</a></li>
                     </ul>
                 </div>  
